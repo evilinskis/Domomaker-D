@@ -9,13 +9,14 @@ const handleDomo = (e, onDomoAdded) => {
 
   const name = e.target.querySelector('#domoName').value;
   const age = e.target.querySelector('#domoAge').value;
+  const favoriteFood = e.target.querySelector('#domoFavFood').value;
 
-  if(!name || !age) {
+  if(!name || !age || !favoriteFood) {
     helper.handleError('All fields are required!');
     return false;
   }
 
-  helper.sendPost(e.target.action, {name, age}, onDomoAdded);
+  helper.sendPost(e.target.action, {name, age, favoriteFood}, onDomoAdded);
   return false;
 }
 
@@ -30,6 +31,8 @@ const DomoForm = (props) => {
     >
       <label htmlFor="name">Name: </label>
       <input id="domoName" type="text" name="name" placeholder="Domo Name" />
+      <label htmlFor="domoFavFood">Favorite Food: </label>
+      <input id="domoFavFood" type="text" name="domoFavFood" placeholder="Favorite Food" />
       <label htmlFor="age">Age: </label>
       <input id="domoAge" type="number" min="0" name="age" />
       <input className="makeDomoSubmit" type="submit" value="Make Domo" />
@@ -63,6 +66,7 @@ const DomoList = (props) => {
         <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
         <h3 className="domoName">Name: {domo.name}</h3>
         <h3 className="domoAge">Age: {domo.age}</h3>
+        <h3 className="domoFavFood">Favorite Food: {domo.favoriteFood}</h3>
       </div>
     );
   });
